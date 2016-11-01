@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import uol.pagseguro.entity.ComandaEntity;
 
 /**
  * Created by machadolucas on 01/11/16.
@@ -12,8 +13,10 @@ import lombok.EqualsAndHashCode;
 @Builder
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ComandaDetailRequest {
+public class GetNotificationsRequest {
 
-    private String idComanda;
     private String sellerEmail;
+
+    private ComandaEntity.ComandaStatus status;
+
 }
