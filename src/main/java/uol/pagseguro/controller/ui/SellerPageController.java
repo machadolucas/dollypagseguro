@@ -30,7 +30,7 @@ public class SellerPageController {
     @Autowired
     private SellerService sellerService;
 
-    @RequestMapping("/")
+    @RequestMapping(method = RequestMethod.GET, path = "/")
     public String index(final Model model) {
 
         final SellerEntity sellerEntity = this.sellerService.findFirst();
