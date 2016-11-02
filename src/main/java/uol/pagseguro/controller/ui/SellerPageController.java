@@ -69,7 +69,7 @@ public class SellerPageController {
 
         model.addAttribute("vendedor", sellerEntity);
         model.addAttribute("comanda", comanda);
-        return "detailComanda";
+        return "redirect:/web/comanda/" + idComanda;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/web/comanda/{idComanda}/finalize")
