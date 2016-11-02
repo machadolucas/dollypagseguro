@@ -34,6 +34,7 @@ public class SellerPageController {
 
         model.addAttribute("vendedor", sellerEntity);
         model.addAttribute("comandas", comandas);
+        model.addAttribute("isHome", "home");
 
         return "index";
     }
