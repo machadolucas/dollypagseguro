@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+<body>
+
+<div layout:fragment="content" class="pure-g">
+    <!--/*@thymesVar id="vendedor" type="uol.pagseguro.entity.SellerEntity"*/-->
+    <div class="pure-u-1-5"></div>
+    <div class="pure-u-3-5">
+        <h2 th:text="'Comandas - '+ ${vendedor.email}">Comandas</h2>
+
+        <!--/*@thymesVar id="comandas" type="List<uol.pagseguro.vo.ComandaVO>"*/-->
+        <!--/*@thymesVar id="comanda" type="uol.pagseguro.vo.ComandaVO"*/-->
+        <a th:if="${!#lists.isEmpty(comandas)}" th:each="comanda : ${comandas}"
+           th:class="${comanda.status} + '-status'" th:href="|/web/comanda/${comanda.idComanda}|">
+            <p th:text="'Comanda ' + ${comanda.idComanda}">idComanda</p>
+            <p>Clique para ver mais detalhes</p>
+        </a>
+
+    </div>
+    <div class="pure-u-1-5"></div>
+
+</div>
+
+</body>
+</html>

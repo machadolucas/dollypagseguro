@@ -1,4 +1,4 @@
-package uol.pagseguro.controller;
+package uol.pagseguro.controller.api;
 
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import uol.pagseguro.vo.CreateSellerResponse;
  */
 @Api
 @RestController
-public class SellerController {
+public class SellerApiController {
 
     @Autowired
     private SellerService sellerService;
@@ -29,9 +29,7 @@ public class SellerController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, path = "/seller")
-    public ResponseEntity<CreateSellerResponse> createSeller(@RequestBody final CreateSellerRequest
-                                                                         createSellerRequest) throws
-            Exception {
+    public ResponseEntity<CreateSellerResponse> createSeller(@RequestBody final CreateSellerRequest createSellerRequest) throws Exception {
 
         this.sellerService.createSeller(createSellerRequest.getEmail(), createSellerRequest.getName(),
                 createSellerRequest.getPublicKey());

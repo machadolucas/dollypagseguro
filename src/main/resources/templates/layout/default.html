@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+    <title>PagPocket</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="PagPocket"/>
+
+    <!--<link rel="icon" type="image/ico" href="/img/favicon.ico"/>-->
+
+    <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.6.0/base-min.css"/>
+    <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.6.0/pure-min.css"/>
+    <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css"/>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="all"/>
+
+    <script src="//cdn.jsdelivr.net/jquery/2.2.4/jquery.min.js"></script>
+    <script src="/js/jquery.lazyload.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+
+    <meta property="og:site_name" content="pagpocket"/>
+    <meta property="og:image"
+          content="/img/site_logo.jpg"/>
+    <meta property="og:title" content="PagPocket"/>
+    <meta property="og:type" content="website"/>
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+
+<div class="container">
+    <div layout:fragment="content">
+    </div>
+    <div id='layout_footer'></div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</body>
+</html>

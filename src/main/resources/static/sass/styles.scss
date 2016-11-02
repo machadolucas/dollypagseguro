@@ -1,0 +1,262 @@
+@import "bourbon/bourbon";
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/layout";
+@import "compass/css3/box";
+@import "animate";
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,400italic,300italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300);
+
+$darkBlue: #274657;
+$lightBlue: #569AC4;
+$goldYellow: #FFC800;
+$lightGreen: #90A600;
+$darkGreen: #2A5904;
+
+$backgroundColour: #ffffff;
+$fontColourTitles: black;
+$fontColour: #333;
+
+$headerHeight: 3em;
+$headerBackground: $darkGreen;
+$headerBackgroundHighlight: $lightGreen;
+$headerBackgroundAdmin: $darkBlue;
+$headerBackgroundHighlightAdmin: $lightBlue;
+
+$footerBackground: $darkBlue;
+$footerBackgroundHighlight: $darkBlue;
+
+@include sticky-footer(3em, ".container","#layout_footer","footer");
+
+::-moz-selection { /* Code for Firefox */
+  color: black;
+  background: $goldYellow;
+}
+
+::selection {
+  color: black;
+  background: $goldYellow;
+}
+
+html {
+  background: $backgroundColour;
+  font-family: Lato, "Helvetica Neue", sans-serif;
+}
+
+body {
+  padding-top: $headerHeight;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  background: $headerBackground;
+  color: white;
+  padding: 0;
+  height: $headerHeight;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  @include box-shadow(black 0 0 0.5em);
+
+  border-bottom: 3px solid $goldYellow;
+
+  a.logo {
+    display: inline-block;
+    position: relative;
+    float: left;
+    line-height: 1em;
+    font-size: 2em;
+    font-family: "Roboto Slab", serif;
+    padding: ($headerHeight - 2em)/4 0.5em;
+    text-shadow: 1px 1px 1px black;
+    color: white;
+    text-decoration: none;
+  }
+  ul.menu {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    float: right;
+    li {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      a {
+        line-height: $headerHeight;
+        padding: ($headerHeight - 1em)/2 0.8em;
+        color: white;
+        text-decoration: none;
+        @include transition(all 0.3s ease-in-out);
+        text-shadow: 1px 1px 1px black;
+      }
+      a:hover {
+        background: $headerBackgroundHighlight;
+      }
+    }
+  }
+
+}
+header.admin {
+  background: $headerBackgroundAdmin;
+  li {
+    a:hover {
+      background: $headerBackgroundHighlightAdmin;
+    }
+  }
+}
+
+.message-box {
+  @include animate(shake, 1.0s, 0s);
+  margin: 1em auto;
+  width: 60%;
+  padding: 0.7em 1em;
+  border: #666;
+  border-radius: 0.5em;
+  background-color: $lightBlue;
+  p{
+    margin: 0;
+    font-size: 1em;
+    color: white;
+    font-weight: bold;
+  }
+}
+
+footer {
+  background: $footerBackground;
+  color: white;
+  padding: 1em;
+
+  a:hover {
+    background: $footerBackgroundHighlight;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto Slab", serif;
+  color: $fontColourTitles;
+  margin: 1em 0 0.5em 0;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+  color: $darkBlue;
+}
+
+h3 {
+  font-size: 1.5em;
+  color: $darkBlue;
+}
+
+h4 {
+  font-size: 1.3em;
+  color: $darkBlue;
+}
+
+h5 {
+  font-size: 1.1em;
+  color: $darkBlue;
+}
+
+h5 {
+  font-size: 1em;
+  color: $darkBlue;
+}
+
+p {
+  font-family: Lato, "Helvetica Neue", sans-serif;
+  color: $fontColour;
+  margin: 1em 0.5em;
+}
+
+.politicians {
+  @include display-flex;
+  @include flex-wrap(wrap);
+
+  .politician {
+    text-decoration: none;
+    background: #eaeaea;
+    margin: .5em;
+    padding: .3em;
+    border-radius: .3em;
+    text-align: center;
+    display: inline-block; /* non-flexbox browsers */
+    @include flex(1 0);
+    @include transition(all 0.3s ease-in-out);
+    @include display-flex;
+    @include flex-direction(column);
+    @include align-items(center);
+    img.photo {
+      height: 152px;
+      width: 114px;
+      border-radius: 0.3em;
+      background: #eaeaea url("../img/ajax-loader.gif") 50% no-repeat;
+    }
+    p.nome {
+      font-family: "Roboto Slab", serif;
+      margin: 0.5em;
+      @include flex(1 0);
+    }
+    p.siglas {
+      margin: 0 0.5em 0.5em 0.5em;
+      color: $darkBlue;
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+  }
+  .politician:hover {
+    background: $goldYellow;
+  }
+}
+
+.individual {
+  img.photo {
+    height: 152px;
+    width: 114px;
+    border-radius: 0.3em;
+    background: #eaeaea url("../img/ajax-loader.gif") 50% no-repeat;
+  }
+  .ficha {
+    @include display-flex;
+    @include flex-wrap(wrap);
+    @include flex-direction(column);
+    border-radius: 0.5em;
+    border: 2px solid #dadada;
+    padding: 1em;
+    margin: 0.5em 0em;
+    max-height: 400px;
+  }
+  .legislatura {
+    border-radius: 1em;
+    border: 2px solid #dadada;
+    padding: 1em;
+    margin: 0.5em 0em;
+    .head-link{
+      cursor: pointer;
+      h2 {
+        margin: 0.2em 0;
+      }
+    }
+    .comissao {
+      .title{
+        font-weight: bolder;
+      }
+      .membro{
+        padding: 0 0 0 1em;
+      }
+      .cargo{
+        padding: 0 0 0 1em;
+      }
+    }
+
+  }
+}
+

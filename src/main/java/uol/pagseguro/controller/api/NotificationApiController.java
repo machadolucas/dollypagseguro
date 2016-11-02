@@ -1,4 +1,4 @@
-package uol.pagseguro.controller;
+package uol.pagseguro.controller.api;
 
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Api
 @RestController
-public class NotificationController {
+public class NotificationApiController {
 
     @Autowired
     NotificationService notificationService;

@@ -1,4 +1,4 @@
-package uol.pagseguro.controller;
+package uol.pagseguro.controller.api;
 
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Api
 @RestController
-public class ComandaController {
+public class ComandaApiController {
 
     @Autowired
     private ComandaService comandaService;
@@ -86,9 +86,7 @@ public class ComandaController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, path = "/comanda/closing")
-    public ResponseEntity<ClosingComandaResponse> closingComanda(@RequestBody final ClosingComandaRequest
-                                                                             closingComandaRequest)
-            throws Exception {
+    public ResponseEntity<ClosingComandaResponse> closingComanda(@RequestBody final ClosingComandaRequest closingComandaRequest) throws Exception {
 
         this.comandaService.closingComanda(closingComandaRequest.getIdComanda(), closingComandaRequest.getSellerEmail
                 (), closingComandaRequest.getBuyerEmail());
@@ -123,8 +121,8 @@ public class ComandaController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, path = "/comanda/paid")
-    public ResponseEntity<PaidComandaResponse> paymentDone(@RequestBody final PaidComandaRequest paidComandaRequest) throws
-            Exception {
+    public ResponseEntity<PaidComandaResponse> paymentDone(@RequestBody final PaidComandaRequest paidComandaRequest)
+            throws Exception {
 
         this.comandaService.processPaidComanda(paidComandaRequest.getIdComanda(), paidComandaRequest.getSellerEmail()
                 , paidComandaRequest.getValue(), paidComandaRequest.getTransactionCode(), paidComandaRequest

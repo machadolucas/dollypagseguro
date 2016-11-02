@@ -25,4 +25,8 @@ public class SellerService {
             throw new Exception();
         }
     }
+
+    public SellerEntity findFirst() {
+        return this.sellerRepository.findAll().get(0);
+    }
 }
