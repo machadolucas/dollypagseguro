@@ -1,6 +1,6 @@
 package uol.pagseguro.controller.ui;
 
-import org.glassfish.jersey.internal.util.Base64;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,9 +62,10 @@ public class SellerPageController {
         final SellerEntity sellerEntity = this.sellerService.findFirst();
         final ComandaEntity comanda = this.comandaService.getComanda(sellerEntity.getEmail(), idComanda);
 
-        final String base64Image = Base64.encodeAsString(file.getBytes());
+        final byte[] bytes = file.getBytes();
+        final String base64 = new String(Base64.encodeBase64(bytes), "UTF-8");
         final BigDecimal valor = new BigDecimal(valueString);
-        this.comandaService.closeToPayment(idComanda, sellerEntity.getEmail(), valor, base64Image);
+        this.comandaService.closeToPayment(idComanda, sellerEntity.getEmail(), valor, base64);
 
         model.addAttribute("vendedor", sellerEntity);
         model.addAttribute("comanda", comanda);
