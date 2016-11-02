@@ -14,8 +14,20 @@
         <p th:if="${comanda.status != T(uol.pagseguro.entity.ComandaStatus).CLOSING}" class="value" th:text="'Valor ' + ${comanda.value}"></p>
 
 		<form id="formPictueValue" name="formPictueValue" th:if="${comanda.status == T(uol.pagseguro.entity.ComandaStatus).CLOSING}" th:action="|/web/comanda/${comanda.idComanda}/closeToPay|" method="post" enctype="multipart/form-data">
-			<input type="file" name="file" />
-			<input type="text" name="value" />
+			<div class="input-file">
+				<label>Incluir foto</label>
+				<input type="file" name="file" />
+			</div>
+
+			<ul class="shadow-input">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li><input id="inputText" type="text" name="value"  placeholder="R$" /></li>
+			</ul>
+
+
 
 		</form>
 

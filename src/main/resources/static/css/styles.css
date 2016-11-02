@@ -141,6 +141,59 @@ a.status-list-item {
 	border-right-color: transparent;
 }
 
+.wrapper form {
+	height: 260px;
+	text-align: center;
+}
+
+.input-file {
+	border: 2px solid #E5E5E5;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.input-file label {
+	padding-bottom: 30px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.input-file input {
+	margin: auto;
+	-webkit-appearance: none;
+	width: 210px;
+}
+
+
+.shadow-input li {
+	height: 3px;
+	min-width: 720px;
+	display: block;
+}
+
+.shadow-input li {
+	background: #8E8E8E;
+}
+.shadow-input li:nth-child(2) {
+	background: #A3A3A3;
+}
+.shadow-input li:nth-child(3) {
+	background: #B7B7B7;
+}
+.shadow-input li:nth-child(4) {
+	background: #C2C2C2;
+}
+
+.shadow-input input[type=text] {
+	background: #ccc;
+	padding: 15px 10px;
+	border: none;
+	width: 100%;
+	text-align: center;
+	-webkit-appearance: none;
+}
+
+
 .bt {
 	padding: 30px 0;
     text-align: center;
