@@ -55,7 +55,9 @@ public class ComandaService {
             //Se comanda ja existir, adiciona o comprador nela
             final List<String> buyersEmails = comandaEntity.getBuyers().stream().map(BuyerEntity::getEmail).collect
                     (Collectors.toList());
-            comandaEntity.getBuyers().add(buyerEntity);
+            if (!comandaEntity.getBuyers().contains(buyerEntity)) {
+                comandaEntity.getBuyers().add(buyerEntity);
+            }
             this.comandaRepository.save(comandaEntity);
             return buyersEmails;
 
