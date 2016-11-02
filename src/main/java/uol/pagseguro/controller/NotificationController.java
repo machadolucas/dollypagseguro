@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,8 @@ public class NotificationController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, path = "/notify")
-    public ResponseEntity<NotificationResponse> createNotification(final NotificationRequest notificationRequest) {
+    public ResponseEntity<NotificationResponse> createNotification(@RequestBody final NotificationRequest
+                                                                               notificationRequest) {
 
         final NotificationResponse notificationResponse;
 
@@ -71,7 +73,7 @@ public class NotificationController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/notifications")
-    public ResponseEntity<GetNotificationsResponse> getNotifications(final GetNotificationsRequest
+    public ResponseEntity<GetNotificationsResponse> getNotifications(@RequestBody final GetNotificationsRequest
                                                                                  getNotificationsRequest) {
 
         final GetNotificationsResponse getNotificationsResponse;

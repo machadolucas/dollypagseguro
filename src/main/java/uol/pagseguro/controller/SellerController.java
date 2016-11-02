@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +29,8 @@ public class SellerController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, path = "/seller")
-    public ResponseEntity<CreateSellerResponse> createSeller(final CreateSellerRequest createSellerRequest) throws
+    public ResponseEntity<CreateSellerResponse> createSeller(@RequestBody final CreateSellerRequest
+                                                                         createSellerRequest) throws
             Exception {
 
         this.sellerService.createSeller(createSellerRequest.getEmail(), createSellerRequest.getName(),

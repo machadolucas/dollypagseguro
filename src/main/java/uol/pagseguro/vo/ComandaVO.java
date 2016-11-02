@@ -1,5 +1,6 @@
 package uol.pagseguro.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,6 +11,7 @@ import uol.pagseguro.entity.ComandaEntity;
  */
 @Data
 @Builder
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class ComandaVO {
 
