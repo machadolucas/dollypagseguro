@@ -12,7 +12,6 @@ import lombok.EqualsAndHashCode;
 @Builder
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CloseComandaResponse {
+public class ClosingComandaResponse {
 
-    private String status;
 }

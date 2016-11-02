@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 /**
  * Created by machadolucas on 01/11/16.
@@ -14,8 +14,12 @@ import java.util.List;
 @Builder
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ComandasListResponse {
+public class PaidComandaRequest {
 
-    List<ComandaVO> comandas;
+    private String idComanda;
+    private String sellerEmail;
+    private String transactionCode;
+    private BigDecimal value;
+    private String status;
 
 }

@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.List;
-
 /**
  * Created by machadolucas on 01/11/16.
  */
@@ -14,8 +12,10 @@ import java.util.List;
 @Builder
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ComandasListResponse {
+public class ClosingComandaRequest {
 
-    List<ComandaVO> comandas;
+    private String idComanda;
+    private String sellerEmail;
+    private String buyerEmail;
 
 }

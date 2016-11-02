@@ -1,5 +1,6 @@
 package uol.pagseguro.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * Created by machadolucas on 01/11/16.
  */
+@Api
 @RestController
 public class NotificationController {
 
@@ -42,20 +44,18 @@ public class NotificationController {
                 break;
             }
             case PAYING: {
-                this.notificationService.createPayingNotification(notificationRequest.getIdComanda(),
-                        notificationRequest.getSellerEmail(), notificationRequest.getBuyerEmail());
+                this.notificationService.createPayingNotification(notificationRequest.getIdComanda(), notificationRequest.getSellerEmail());
                 notificationResponse = NotificationResponse.builder().build();
                 break;
             }
             case PAID: {
                 this.notificationService.createPaidNotification(notificationRequest.getIdComanda(),
-                        notificationRequest.getSellerEmail(), notificationRequest.getBuyerEmail());
+                        notificationRequest.getSellerEmail());
                 notificationResponse = NotificationResponse.builder().build();
                 break;
             }
             case REFUSED: {
-                this.notificationService.createRefusedNotification(notificationRequest.getIdComanda(),
-                        notificationRequest.getSellerEmail(), notificationRequest.getBuyerEmail());
+                this.notificationService.createRefusedNotification(notificationRequest.getIdComanda(), notificationRequest.getSellerEmail());
                 notificationResponse = NotificationResponse.builder().build();
                 break;
             }

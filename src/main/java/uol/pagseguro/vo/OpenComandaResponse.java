@@ -16,5 +16,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OpenComandaResponse {
 
-    List<String> otherBuyers;
+    List<String> activeBuyers;
 }

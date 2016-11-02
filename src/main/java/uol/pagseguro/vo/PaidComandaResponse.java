@@ -12,10 +12,6 @@ import lombok.EqualsAndHashCode;
 @Builder
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CloseComandaRequest {
-
-    private String idComanda;
-    private String sellerEmail;
-    private String buyerEmail;
+public class PaidComandaResponse {
 
 }
