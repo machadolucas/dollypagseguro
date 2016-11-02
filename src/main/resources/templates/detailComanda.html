@@ -3,17 +3,16 @@
       layout:decorator="layout/default">
 <body>
 
-<div layout:fragment="content" class="pure-g">
+<div layout:fragment="content">
     <!--/*@thymesVar id="vendedor" type="uol.pagseguro.entity.SellerEntity"*/-->
     <!--/*@thymesVar id="comanda" type="uol.pagseguro.entity.ComandaEntity"*/-->
-    <div class="pure-u-1-5"></div>
 
-    <div class="pure-u-3-5">
-        <h2 th:text="'Comandas - '+ ${vendedor.email}">Comandas</h2>
+ 	<div th:class="'status ' + ${comanda.status}"><div class="wrapper" th:text="'Status: ' + ${comanda.status}"></div></div>
 
-        <p th:text="'Comanda ' + ${comanda.idComanda}">idComanda</p>
-        <p th:text="'Status ' + ${comanda.status}">Status</p>
-        <p th:text="'Valor ' + ${comanda.value}">Status</p>
+ 	<div class="wrapper">
+        <h2 th:text="'Comandas - '+ ${vendedor.email}"></h2>
+        <p th:text="'Comanda ' + ${comanda.idComanda}"></p>
+        <p class="value" th:text="'Valor ' + ${comanda.value}"></p>
 
         <a th:if="${comanda.status == T(uol.pagseguro.entity.ComandaStatus).CLOSING}"
            th:href="|/web/comanda/${comanda.idComanda}/closeToPay|">Fechar
@@ -21,9 +20,7 @@
 
         <a th:if="${comanda.status == T(uol.pagseguro.entity.ComandaStatus).PAID || comanda.status == T(uol.pagseguro.entity.ComandaStatus).REFUSED}"
            th:href="|/web/comanda/${comanda.idComanda}/finalize|">Finalizar comanda paga/recusada</a>
-    </div>
-
-    <div class="pure-u-1-5"></div>
+ 	</div>
 
 </div>
 
