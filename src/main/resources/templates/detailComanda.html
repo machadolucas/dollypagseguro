@@ -10,16 +10,29 @@
  	<div th:class="'status ' + ${comanda.status}"><div class="wrapper" th:text="'Status: ' + ${comanda.status}"></div></div>
 
  	<div class="wrapper">
-        <h2 th:text="'Comandas - '+ ${vendedor.email}"></h2>
         <p th:text="'Comanda ' + ${comanda.idComanda}"></p>
         <p class="value" th:text="'Valor ' + ${comanda.value}"></p>
 
-        <a th:if="${comanda.status == T(uol.pagseguro.entity.ComandaStatus).CLOSING}"
+        <a class="bt" th:if="${comanda.status == T(uol.pagseguro.entity.ComandaStatus).CLOSING}"
            th:href="|/web/comanda/${comanda.idComanda}/closeToPay|">Fechar
-            comanda e solicitar pagamento para comprador</a>
+            comanda e solicitar pagamento para comprador
+				<ul>
+					<li> </li>
+					<li> </li>
+					<li> </li>
+					<li> </li>
+				</ul>
+            </a>
 
-        <a th:if="${comanda.status == T(uol.pagseguro.entity.ComandaStatus).PAID || comanda.status == T(uol.pagseguro.entity.ComandaStatus).REFUSED}"
-           th:href="|/web/comanda/${comanda.idComanda}/finalize|">Finalizar comanda paga/recusada</a>
+        <a class="bt" th:if="${comanda.status == T(uol.pagseguro.entity.ComandaStatus).PAID || comanda.status == T(uol.pagseguro.entity.ComandaStatus).REFUSED}"
+           th:href="|/web/comanda/${comanda.idComanda}/finalize|">Finalizar comanda paga/recusada
+			<ul>
+				<li> </li>
+				<li> </li>
+				<li> </li>
+				<li> </li>
+			</ul>
+           </a>
  	</div>
 
 </div>
