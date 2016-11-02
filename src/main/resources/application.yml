@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: dollynhopagseguro
+      username: admin
+      password: dnHb6Z3wzale

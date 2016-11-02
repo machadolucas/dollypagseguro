@@ -44,7 +44,8 @@ public class NotificationController {
                 break;
             }
             case PAYING: {
-                this.notificationService.createPayingNotification(notificationRequest.getIdComanda(), notificationRequest.getSellerEmail());
+                this.notificationService.createPayingNotification(notificationRequest.getIdComanda(),
+                        notificationRequest.getSellerEmail());
                 notificationResponse = NotificationResponse.builder().build();
                 break;
             }
