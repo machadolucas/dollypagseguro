@@ -22,7 +22,7 @@ public class DollyApplication {
 	@Bean
 	public Docket newsApi() {
 		return new Docket(DocumentationType.SWAGGER_2).groupName("dolly").apiInfo(apiInfo()).select() //
-				.paths(regex("/comanda.*")).build();
+				.paths(regex("/.*")).build();
 	}
 
 	private ApiInfo apiInfo() {
