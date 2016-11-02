@@ -11,10 +11,16 @@
 
  	<div class="wrapper">
         <p th:text="'Comanda ' + ${comanda.idComanda}"></p>
-        <p class="value" th:text="'Valor ' + ${comanda.value}"></p>
+        <p th:if="${comanda.status != T(uol.pagseguro.entity.ComandaStatus).CLOSING}" class="value" th:text="'Valor ' + ${comanda.value}"></p>
+
+		<form id="formPictueValue" name="formPictueValue" th:if="${comanda.status == T(uol.pagseguro.entity.ComandaStatus).CLOSING}" th:action="|/web/comanda/${comanda.idComanda}/closeToPay|" method="post" enctype="multipart/form-data">
+			<input type="file" name="file" />
+			<input type="text" name="value" />
+
+		</form>
 
         <a class="bt" th:if="${comanda.status == T(uol.pagseguro.entity.ComandaStatus).CLOSING}"
-           th:href="|/web/comanda/${comanda.idComanda}/closeToPay|">Fechar
+           onclick="document.formPictueValue.submit()">Fechar
             comanda e solicitar pagamento para comprador
 				<ul>
 					<li> </li>
