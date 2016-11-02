@@ -13,6 +13,13 @@
 
         <p th:text="'Comanda ' + ${comanda.idComanda}">idComanda</p>
         <p th:text="'Status ' + ${comanda.status}">Status</p>
+        <p th:text="'Valor ' + ${comanda.value}">Status</p>
+
+        <a th:if="${comanda.status.equals('closing')}" th:href="|/web/comanda/${comanda.idComanda}/closeToPay|">Fechar
+            comanda e solicitar pagamento para comprador</a>
+
+        <a th:if="${comanda.status.equals('paid') || comanda.status.equals('refused')}"
+           th:href="|/web/comanda/${comanda.idComanda}/finalize|">Finalizar comanda paga/recusada</a>
     </div>
 
     <div class="pure-u-1-5"></div>

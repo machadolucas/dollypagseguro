@@ -86,7 +86,8 @@ public class ComandaApiController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, path = "/comanda/closing")
-    public ResponseEntity<ClosingComandaResponse> closingComanda(@RequestBody final ClosingComandaRequest closingComandaRequest) throws Exception {
+    public ResponseEntity<ClosingComandaResponse> closingComanda(@RequestBody final ClosingComandaRequest
+                                                                             closingComandaRequest) throws Exception {
 
         this.comandaService.closingComanda(closingComandaRequest.getIdComanda(), closingComandaRequest.getSellerEmail
                 (), closingComandaRequest.getBuyerEmail());

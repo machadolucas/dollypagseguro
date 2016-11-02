@@ -29,7 +29,8 @@ public class SellerApiController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, path = "/seller")
-    public ResponseEntity<CreateSellerResponse> createSeller(@RequestBody final CreateSellerRequest createSellerRequest) throws Exception {
+    public ResponseEntity<CreateSellerResponse> createSeller(@RequestBody final CreateSellerRequest
+                                                                         createSellerRequest) throws Exception {
 
         this.sellerService.createSeller(createSellerRequest.getEmail(), createSellerRequest.getName(),
                 createSellerRequest.getPublicKey());
