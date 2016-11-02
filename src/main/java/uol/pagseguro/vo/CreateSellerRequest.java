@@ -1,21 +1,18 @@
-package uol.pagseguro.entity;
+package uol.pagseguro.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 
 /**
  * Created by machadolucas on 01/11/16.
  */
 @Data
 @Builder
-@EqualsAndHashCode(callSuper = false)
-public class SellerEntity {
-
-    @Id
-    private ObjectId id;
+@EqualsAndHashCode
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CreateSellerRequest {
 
     private String name;
     private String email;
