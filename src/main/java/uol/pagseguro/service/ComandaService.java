@@ -51,15 +51,29 @@ public class ComandaService {
 
         ComandaEntity comandaEntity = this.comandaRepository.findBySellerAndIdComanda(sellerEntity, idComanda);
 
-        //Se comanda ja existir, adiciona o comprador nela
-        if (comandaEntity != null) {
+        if (comandaEntity != null && comandaEntity.getStatus() == ComandaEntity.ComandaStatus.OPEN) {
+            //Se comanda ja existir, adiciona o comprador nela
             final List<String> buyersEmails = comandaEntity.getBuyers().stream().map(BuyerEntity::getEmail).collect
                     (Collectors.toList());
             comandaEntity.getBuyers().add(buyerEntity);
             this.comandaRepository.save(comandaEntity);
             return buyersEmails;
 
-        } else { // Senao, cria a comanda com o primeiro comprador
+        } else if (comandaEntity != null && comandaEntity.getStatus() == ComandaEntity.ComandaStatus.CLOSED) {
+            //Se eh uma comanda existente e fechada, zera ela e reabre como nova
+            final List<BuyerEntity> buyersList = new ArrayList<>();
+            buyersList.add(buyerEntity);
+            comandaEntity.setStatus(ComandaEntity.ComandaStatus.OPEN);
+            comandaEntity.setBuyers(buyersList);
+            comandaEntity.setImageFinal(null);
+            comandaEntity.setValue(null);
+            comandaEntity.setProducts(null);
+
+            this.comandaRepository.save(comandaEntity);
+            return buyersList.stream().map(BuyerEntity::getEmail).collect(Collectors.toList());
+
+        } else {
+            // Senao, cria a comanda com o primeiro comprador
             final List<BuyerEntity> buyersList = new ArrayList<>();
             buyersList.add(buyerEntity);
             comandaEntity = ComandaEntity.builder().idComanda(idComanda).seller(sellerEntity).buyers(buyersList)
