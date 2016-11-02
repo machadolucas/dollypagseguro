@@ -1,6 +1,7 @@
 package uol.pagseguro.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import uol.pagseguro.entity.ComandaEntity;
 import uol.pagseguro.entity.PayingNotificationEntity;
 
 import java.util.List;
@@ -11,4 +12,6 @@ import java.util.List;
 public interface PayingNotificationRepository extends MongoRepository<PayingNotificationEntity, String> {
 
     List<PayingNotificationEntity> findAllBySellerEmail(String sellerEmail);
+
+    List<PayingNotificationEntity> findAllByComanda(ComandaEntity comandaEntity);
 }
