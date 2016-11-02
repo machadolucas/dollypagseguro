@@ -56,7 +56,8 @@ public class NotificationController {
                 break;
             }
             case REFUSED: {
-                this.notificationService.createRefusedNotification(notificationRequest.getIdComanda(), notificationRequest.getSellerEmail());
+                this.notificationService.createRefusedNotification(notificationRequest.getIdComanda(),
+                        notificationRequest.getSellerEmail());
                 notificationResponse = NotificationResponse.builder().build();
                 break;
             }

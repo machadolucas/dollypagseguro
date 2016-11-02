@@ -1,6 +1,9 @@
 package uol.pagseguro.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -37,7 +40,6 @@ public class ComandaEntity {
     private ComandaStatus status = ComandaStatus.BLANK;
 
     @AllArgsConstructor
-    @ToString
     public enum ComandaStatus {
 
         BLANK(0, "blank"), //
@@ -51,5 +53,9 @@ public class ComandaEntity {
         private int code;
         private String name;
 
+        @Override
+        public String toString() {
+            return this.name;
+        }
     }
 }

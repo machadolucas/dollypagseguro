@@ -72,12 +72,16 @@ public class ComandaService {
     public List<ComandaVO> listComandas(final String sellerEmail) {
         final SellerEntity sellerEntity = this.sellerRepository.findByEmail(sellerEmail);
         final List<ComandaEntity> comandaEntities = this.comandaRepository.findAllBySeller(sellerEntity);
-        return comandaEntities.stream().map( //
+        return comandaEntities.stream().filter(this::canListComanda).map( //
                 comandaEntity -> ComandaVO.builder().idComanda(comandaEntity.getIdComanda()).status(comandaEntity
                         .getStatus()).build())//
                 .collect(Collectors.toList());
     }
 
+    private boolean canListComanda(final ComandaEntity comandaEntity) {
+        return comandaEntity.getStatus() != ComandaEntity.ComandaStatus.BLANK && //
+                comandaEntity.getStatus() != ComandaEntity.ComandaStatus.CLOSED;
+    }
 
     public ComandaEntity getComanda(final String sellerEmail, final String idComanda) {
         final SellerEntity sellerEntity = this.sellerRepository.findByEmail(sellerEmail);
