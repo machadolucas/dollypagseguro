@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import uol.pagseguro.entity.ComandaEntity;
+import uol.pagseguro.entity.ComandaStatus;
 
 /**
  * Created by machadolucas on 01/11/16.
@@ -19,6 +19,6 @@ public class GetNotificationsRequest {
 
     private String sellerEmail;
 
-    private ComandaEntity.ComandaStatus status;
+    private ComandaStatus status;
 
 }

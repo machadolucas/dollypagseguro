@@ -15,10 +15,11 @@
         <p th:text="'Status ' + ${comanda.status}">Status</p>
         <p th:text="'Valor ' + ${comanda.value}">Status</p>
 
-        <a th:if="${comanda.status.equals('closing')}" th:href="|/web/comanda/${comanda.idComanda}/closeToPay|">Fechar
+        <a th:if="${comanda.status == T(uol.pagseguro.entity.ComandaStatus).CLOSING}"
+           th:href="|/web/comanda/${comanda.idComanda}/closeToPay|">Fechar
             comanda e solicitar pagamento para comprador</a>
 
-        <a th:if="${comanda.status.equals('paid') || comanda.status.equals('refused')}"
+        <a th:if="${comanda.status == T(uol.pagseguro.entity.ComandaStatus).PAID || comanda.status == T(uol.pagseguro.entity.ComandaStatus).REFUSED}"
            th:href="|/web/comanda/${comanda.idComanda}/finalize|">Finalizar comanda paga/recusada</a>
     </div>
 

@@ -51,7 +51,7 @@ public class ComandaService {
 
         ComandaEntity comandaEntity = this.comandaRepository.findBySellerAndIdComanda(sellerEntity, idComanda);
 
-        if (comandaEntity != null && comandaEntity.getStatus() == ComandaEntity.ComandaStatus.OPEN) {
+        if (comandaEntity != null && comandaEntity.getStatus() == ComandaStatus.OPEN) {
             //Se comanda ja existir, adiciona o comprador nela
             final List<String> buyersEmails = comandaEntity.getBuyers().stream().map(BuyerEntity::getEmail).collect
                     (Collectors.toList());
@@ -59,11 +59,11 @@ public class ComandaService {
             this.comandaRepository.save(comandaEntity);
             return buyersEmails;
 
-        } else if (comandaEntity != null && comandaEntity.getStatus() == ComandaEntity.ComandaStatus.CLOSED) {
+        } else if (comandaEntity != null && comandaEntity.getStatus() == ComandaStatus.CLOSED) {
             //Se eh uma comanda existente e fechada, zera ela e reabre como nova
             final List<BuyerEntity> buyersList = new ArrayList<>();
             buyersList.add(buyerEntity);
-            comandaEntity.setStatus(ComandaEntity.ComandaStatus.OPEN);
+            comandaEntity.setStatus(ComandaStatus.OPEN);
             comandaEntity.setBuyers(buyersList);
             comandaEntity.setImageFinal(null);
             comandaEntity.setValue(null);
@@ -77,7 +77,7 @@ public class ComandaService {
             final List<BuyerEntity> buyersList = new ArrayList<>();
             buyersList.add(buyerEntity);
             comandaEntity = ComandaEntity.builder().idComanda(idComanda).seller(sellerEntity).buyers(buyersList)
-                    .status(ComandaEntity.ComandaStatus.OPEN).build();
+                    .status(ComandaStatus.OPEN).build();
             this.comandaRepository.save(comandaEntity);
             return buyersList.stream().map(BuyerEntity::getEmail).collect(Collectors.toList());
         }
@@ -93,8 +93,8 @@ public class ComandaService {
     }
 
     private boolean canListComanda(final ComandaEntity comandaEntity) {
-        return comandaEntity.getStatus() != ComandaEntity.ComandaStatus.BLANK && //
-                comandaEntity.getStatus() != ComandaEntity.ComandaStatus.CLOSED;
+        return comandaEntity.getStatus() != ComandaStatus.BLANK && //
+                comandaEntity.getStatus() != ComandaStatus.CLOSED;
     }
 
     public ComandaEntity getComanda(final String sellerEmail, final String idComanda) {
@@ -108,8 +108,8 @@ public class ComandaService {
         final SellerEntity sellerEntity = this.sellerRepository.findByEmail(sellerEmail);
         final ComandaEntity comandaEntity = this.comandaRepository.findBySellerAndIdComanda(sellerEntity, idComanda);
 
-        if (ComandaEntity.ComandaStatus.OPEN.equals(comandaEntity.getStatus())) {
-            comandaEntity.setStatus(ComandaEntity.ComandaStatus.CLOSING);
+        if (ComandaStatus.OPEN.equals(comandaEntity.getStatus())) {
+            comandaEntity.setStatus(ComandaStatus.CLOSING);
             this.comandaRepository.save(comandaEntity);
 
             //Cria notificacao de fechamento para o vendedor
@@ -125,11 +125,11 @@ public class ComandaService {
         final SellerEntity sellerEntity = this.sellerRepository.findByEmail(sellerEmail);
         final ComandaEntity comandaEntity = this.comandaRepository.findBySellerAndIdComanda(sellerEntity, idComanda);
 
-        if (ComandaEntity.ComandaStatus.CLOSING.equals(comandaEntity.getStatus())) {
+        if (ComandaStatus.CLOSING.equals(comandaEntity.getStatus())) {
             final ImageEntity imageEntity = ImageEntity.builder().blob(image).creationDate(new Date()).build();
             this.imageRepository.save(imageEntity);
 
-            comandaEntity.setStatus(ComandaEntity.ComandaStatus.PAYING);
+            comandaEntity.setStatus(ComandaStatus.PAYING);
             comandaEntity.setValue(value);
             comandaEntity.setImageFinal(imageEntity);
             this.comandaRepository.save(comandaEntity);
@@ -146,20 +146,20 @@ public class ComandaService {
         final SellerEntity sellerEntity = this.sellerRepository.findByEmail(sellerEmail);
         final ComandaEntity comandaEntity = this.comandaRepository.findBySellerAndIdComanda(sellerEntity, idComanda);
 
-        if (ComandaEntity.ComandaStatus.PAYING.equals(comandaEntity.getStatus())) {
+        if (ComandaStatus.PAYING.equals(comandaEntity.getStatus())) {
 
             final TransactionEntity transactionEntity = TransactionEntity.builder().comandaEntity(comandaEntity).code
                     (transactionCode).status(status).value(value).build();
             this.transactionRepository.save(transactionEntity);
 
             if ("OK".equals(status)) {
-                comandaEntity.setStatus(ComandaEntity.ComandaStatus.PAID);
+                comandaEntity.setStatus(ComandaStatus.PAID);
                 this.comandaRepository.save(comandaEntity);
 
                 //Cria notificacao de paga
                 this.notificationService.createPaidNotification(idComanda, sellerEmail);
             } else {
-                comandaEntity.setStatus(ComandaEntity.ComandaStatus.REFUSED);
+                comandaEntity.setStatus(ComandaStatus.REFUSED);
                 this.comandaRepository.save(comandaEntity);
                 //Cria notificacao de recusada
                 this.notificationService.createRefusedNotification(idComanda, sellerEmail);
@@ -175,10 +175,10 @@ public class ComandaService {
         final SellerEntity sellerEntity = this.sellerRepository.findByEmail(sellerEmail);
         final ComandaEntity comandaEntity = this.comandaRepository.findBySellerAndIdComanda(sellerEntity, idComanda);
 
-        if (ComandaEntity.ComandaStatus.PAID.equals(comandaEntity.getStatus()) || ComandaEntity.ComandaStatus.REFUSED
+        if (ComandaStatus.PAID.equals(comandaEntity.getStatus()) || ComandaStatus.REFUSED
                 .equals(comandaEntity.getStatus())) {
 
-            comandaEntity.setStatus(ComandaEntity.ComandaStatus.CLOSED);
+            comandaEntity.setStatus(ComandaStatus.CLOSED);
             this.comandaRepository.save(comandaEntity);
         } else {
             throw new Exception("Transicao de status invalida");
